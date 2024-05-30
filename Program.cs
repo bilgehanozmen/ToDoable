@@ -8,9 +8,15 @@ var connectionString = builder.Configuration.GetConnectionString("ToDoableDbCont
 
 builder.Services.AddDbContext<ToDoableDbContext>(options => options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<ToDoableUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ToDoableDbContext>();
+builder.Services.AddDefaultIdentity<ToDoableUser>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<ToDoableDbContext>();
 
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.Password.RequireUppercase = false;
 
+}
+
+);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
