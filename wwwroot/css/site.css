@@ -1,10 +1,12 @@
 html {
     font-size: 14px;
+    background-color: #FFF5F4;
 }
 
 @media (min-width: 768px) {
     html {
         font-size: 16px;
+        
     }
 }
 
@@ -15,33 +17,51 @@ html {
 html {
     position: relative;
     min-height: 100%;
+    background-color: #FFF5F4;
 }
 
 body {
     margin-bottom: 60px;
-    font-family:Montserrat, sans-serif;
+    font-family: Montserrat, sans-serif;
+    background-color: #FFF5F4;
 }
 
 /*tab navigation*/
 .login-logout-card .card-header {
     padding: 0px 0px 12px 0px;
+    background-color: #FFF5F4;
 }
 
 .login-logout-card ul.nav-tabs {
     margin: 0px 0px -12px 0px;
+    background-color: #FFF5F4;
 }
 
 .login-logout-card li.nav-item {
     width: 50%;
+    background-color: #FFF5F4;
 }
 
 .login-logout-card a.nav-link {
     font-size: 1rem;
-    color: #495057;
+    background-color: #FFF5F4;
     text-align: center;
     padding: 1rem;
 }
 
 .login-logout-card .card-body {
     padding: 10px 20px;
+    background-color: #FFF5F4;
+    align-content:center;
+}
+.custom-login-background {
+    background-color: #FFE3E9; /* Light grey background color */
+}
+.e-bigger {
+    font-size: x-large;
+}
+
+.widget {
+    border-radius: 1rem;
+    background-color: #FFE3E9;
 }

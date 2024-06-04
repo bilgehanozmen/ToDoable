@@ -1,0 +1,48 @@
+﻿@using Syncfusion.EJ2
+@model ToDoable.Models.Category
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Add Task</h1>
+<hr />
+<div class="flex-md-row" >
+    <div class="col-md-7">
+        <div class="widget p-5">
+            <form asp-action="Create">
+                <input type="hidden" name="CategoryId" value="@Model.Id" />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="mb-3" style="align-content:center">
+                    <div class='e-btn-group'>
+                        <input type="radio" id="radioleft" name="Color" value="Blue" />
+                        <label style="background-color:#9FDAF5" class="e-btn" for="radioleft">Blue</label>
+                        <input type="radio" id="radiomiddle" name="Color" value="Pink" />
+                        <label style="background-color:#FFBFC5" class="e-btn" for="radiomiddle">Pink</label>
+                        <input type="radio" id="radioright" name="Color" value="Yellow" />
+                        <label style="background-color:#FEE1B8" class="e-btn" for="radioright">Yellow</label>
+                    </div>
+                    <span asp-validation-for="Color" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <ejs-textbox id="name" placeholder="Name" ejs-for="@Model.Name" floatLabelType="Always"></ejs-textbox>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <ejs-textbox id="description" placeholder="Description" ejs-for="@Model.Description" floatLabelType="Always"></ejs-textbox>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <ejs-button id="submit" typeof="submit" content="Submit" style="background-color:#BDD197 ">
+
+                </ejs-button>
+
+            </form>
+        </div>
+        
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

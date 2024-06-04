@@ -11,7 +11,8 @@ public class ToDoableDbContext : IdentityDbContext<ToDoableUser>
         : base(options)
     {
     }
-
+    public DbSet<Category> Categories { get; set; }
+    public DbSet<ToDoItem> TodoItems { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
