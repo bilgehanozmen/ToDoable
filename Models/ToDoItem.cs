@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ToDoable.Models
 {
     public class ToDoItem
     {
-        public int Id { get; set; }
+        
+        public int ToDoItemId { get; set; }
 
         [Required(ErrorMessage = "Please, enter a title for todo item")]
         [MaxLength(200)]
@@ -15,25 +17,11 @@ namespace ToDoable.Models
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
-        [Display(Name = "Is Completed")]
-        public bool IsCompleted { get; set; }
 
         [Display(Name = "Due Date")]
         public DateTime DueDate { get; set; }
 
-        [ScaffoldColumn(false)]
-        public DateTime CreatedDate { get; set; } = DateTime.Now;
-
-        [ScaffoldColumn(false)]
-        public DateTime CompletedDate { get; set; }
-
-        public int CategoryId { get; set; }
-
-        public virtual Category Category { get; set; }
-
-        public string ToDoableUserId { get; set; }
-        public virtual ToDoableUser ToDoableUser { get; set; }
-
+        
         public int RemainingHour
         {
             get
@@ -42,6 +30,20 @@ namespace ToDoable.Models
                 return (int)remaingTime.TotalHours;
             }
         }
+
+        public int CategoryId { get; set; }
+
+        public virtual Category? Category { get; set; }
+        /*
+         * 
+         select * from Todos t inner join Categories c on t.CategoryId=c.Id
+         * 
+         */
+
+        public string ToDoableUserId{ get; set; }
+        public virtual ToDoableUser ToDoableUser { get; set; }
+
+
 
     }
 }

@@ -5,7 +5,7 @@ namespace ToDoable.Models
 {
     public class Category
     {
-        public int Id { get; set; }
+        public int Id{ get; set; }
 
         [MaxLength(50)]
         [Column(TypeName = "nvarchar(50)")]
@@ -18,6 +18,6 @@ namespace ToDoable.Models
         [Column(TypeName = "nvarchar(10)")]
         public string Color { get; set;}
 
-
+        public virtual List<ToDoItem> TodoItems { get; set; }
     }
 }

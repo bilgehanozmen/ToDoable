@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ToDoable</title>
+    <title>ToDoable</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.syncfusion.com/ej2/25.2.3/fluent.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -31,9 +31,26 @@
     </header>
     <div class="container mt-5">
         <div class="col-md-10 justify-content-center" >
-            <main role="main" class="pb-3">
-                @RenderBody()
-            </main>
+            <div class="col-md-10">
+                <main role="main" class="pb-3">
+                    <div class="col-md-7">
+                        <div class="d-flex flex-column mb-5">
+                            <div class="d-flex mb-1">
+                                <div class="flex-grow-1">
+                                    <h3 class="fw-bold"> @ViewData["PageTitle"]</h3>
+                                </div>
+                                
+                            </div>
+                            
+
+                        </div>
+
+                    </div>
+                    @RenderBody()
+                </main>
+
+            </div>
+            
         </div>
     </div>
 

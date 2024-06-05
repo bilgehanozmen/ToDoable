@@ -1,0 +1,51 @@
+﻿@model ToDoable.Models.ToDoItem
+
+@{
+    ViewData["Title"] = "AddOrEdit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-7 justify-content-center">
+        <div class="widget p-5 justify-content-center">
+            <form asp-action="AddOrEdit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group mb-3">
+                    <ejs-datepicker id="date" ejs-for="@Model.DueDate" placeholder="Date" floatLabelType="Always"> </ejs-datepicker>
+                    <span asp-validation-for="DueDate" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <ejs-textbox id="Title" placeholder="Title" ejs-for="@Model.Title" floatLabelType="Always"></ejs-textbox>
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <ejs-textbox id="despcription" placeholder="Description" ejs-for="@Model.Description" floatLabelType="Always"></ejs-textbox>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                
+                <div class="form-group mb-3">
+                   <ejs-dropdownlist id="ddlCategory" ejs-for="@Model.CategoryId" dataSource="@ViewBag.Categories" placeholder="Category" floatLabelType="Always">
+                       <e-dropdownlist-fields value="Id">
+
+                       </e-dropdownlist-fields>
+                   </ejs-dropdownlist>
+                </div>
+                <div class="form-group mb-3">
+                    <ejs-textbox id="userId" placeholder="ToDoableUserId" ejs-for="@Model.ToDoableUserId" floatLabelType="Always"></ejs-textbox>
+                    <select asp-for="ToDoableUserId" class="form-control" asp-items="ViewBag.ToDoableUserId"></select>
+                </div>
+                
+                <ejs-button id="submit" typeof="submit" content="Submit" style="background-color:#BDD197 ">
+
+                </ejs-button>
+            </form>
+        </div>
+        
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

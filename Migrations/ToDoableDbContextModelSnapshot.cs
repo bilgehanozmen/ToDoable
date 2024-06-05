@@ -17,7 +17,7 @@ namespace ToDoable.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.5")
+                .HasAnnotation("ProductVersion", "8.0.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -188,11 +188,11 @@ namespace ToDoable.Migrations
 
             modelBuilder.Entity("ToDoable.Models.ToDoItem", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ToDoItemId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ToDoItemId"));
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -223,7 +223,7 @@ namespace ToDoable.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("Id");
+                    b.HasKey("ToDoItemId");
 
                     b.HasIndex("CategoryId");
 
@@ -359,7 +359,7 @@ namespace ToDoable.Migrations
             modelBuilder.Entity("ToDoable.Models.ToDoItem", b =>
                 {
                     b.HasOne("ToDoable.Models.Category", "Category")
-                        .WithMany()
+                        .WithMany("TodoItems")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -373,6 +373,11 @@ namespace ToDoable.Migrations
                     b.Navigation("Category");
 
                     b.Navigation("ToDoableUser");
+                });
+
+            modelBuilder.Entity("ToDoable.Models.Category", b =>
+                {
+                    b.Navigation("TodoItems");
                 });
 #pragma warning restore 612, 618
         }

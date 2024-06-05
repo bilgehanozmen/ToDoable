@@ -1,5 +1,4 @@
-﻿@using Syncfusion.EJ2
-@model ToDoable.Models.Category
+﻿@model ToDoable.Models.Category
 
 @{
     ViewData["Title"] = "Create";
@@ -8,7 +7,7 @@
 
 <h1>Add Task</h1>
 <hr />
-<div class="flex-md-row" >
+<div class="flex-md-row">
     <div class="col-md-7">
         <div class="widget p-5">
             <form asp-action="Create">
@@ -39,10 +38,12 @@
 
             </form>
         </div>
-        
+
     </div>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

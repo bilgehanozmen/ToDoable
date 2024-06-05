@@ -12,15 +12,15 @@ using ToDoable.Data;
 namespace ToDoable.Migrations
 {
     [DbContext(typeof(ToDoableDbContext))]
-    [Migration("20240531081346_AddNewTable")]
-    partial class AddNewTable
+    [Migration("20240605034552_AddNewColumnsTotoDoItem")]
+    partial class AddNewColumnsTotoDoItem
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.5")
+                .HasAnnotation("ProductVersion", "8.0.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -170,6 +170,15 @@ namespace ToDoable.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -182,11 +191,11 @@ namespace ToDoable.Migrations
 
             modelBuilder.Entity("ToDoable.Models.ToDoItem", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ToDoItemId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ToDoItemId"));
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -217,7 +226,7 @@ namespace ToDoable.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("Id");
+                    b.HasKey("ToDoItemId");
 
                     b.HasIndex("CategoryId");
 
@@ -353,7 +362,7 @@ namespace ToDoable.Migrations
             modelBuilder.Entity("ToDoable.Models.ToDoItem", b =>
                 {
                     b.HasOne("ToDoable.Models.Category", "Category")
-                        .WithMany()
+                        .WithMany("TodoItems")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -367,6 +376,11 @@ namespace ToDoable.Migrations
                     b.Navigation("Category");
 
                     b.Navigation("ToDoableUser");
+                });
+
+            modelBuilder.Entity("ToDoable.Models.Category", b =>
+                {
+                    b.Navigation("TodoItems");
                 });
 #pragma warning restore 612, 618
         }
