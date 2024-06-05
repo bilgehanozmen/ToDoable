@@ -60,7 +60,14 @@ body {
 .e-bigger {
     font-size: x-large;
 }
-
+.main-content{
+    margin-left: 290px;
+}
+#sidebar {
+    background-color: #FFE4E1;
+    border-right: 1px dashed #FFF5F4;
+    padding: 10px 20px;
+}
 .widget {
     border-radius: 1rem;
     background-color: #FFE3E9;
